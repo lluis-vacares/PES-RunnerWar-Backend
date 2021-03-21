@@ -7,8 +7,16 @@ db = client["RunnerWar"]
 col = db["Cuenta"]
 
 
+def consult(attribute):
+    return col.find({"_id": attribute})
+
+
 def create(email, name, password, faction):
-    if col.find({"username": name}) is None:
+    object = 0
+    aux = col.find({"username": name}, { "_id": 0, "username": 1})
+    for x in aux:
+        object = x
+    if object == 0:
         doc = {
             "_id": email,
             "password": password,
@@ -18,26 +26,19 @@ def create(email, name, password, faction):
             "faction": faction
         }
         col.insert_one(doc)
-        return 1
+        return consult(email)
     return None
 
 
-def edit(item, old, new):
-    query = {item: old}
-    aux = {item: new}
-    if col.find(aux) is None:
-        new = {"$set": aux}
-        col.update_one(query, new)
-        return 1
+def edit(item, old, new, id):
+    if col.find({item: new}) is None:
+        new = {"$set": {item: new}}
+        col.update_one({item: old}, {item: new})
+        return consult(id)
     return None
 
 
 def delete(attribute):
     query = {"_id": attribute}
     col.delete_one(query)
-
-
-def consult(item, attribute):
-    aux = col.find({item: attribute})
-    for x in aux:
-        return x
+    return 200
