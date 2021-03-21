@@ -12,11 +12,10 @@ def consult(attribute):
 
 
 def create(email, name, password, faction):
-    object = 0
-    aux = col.find({"username": name}, { "_id": 0, "username": 1})
-    for x in aux:
-        object = x
-    if object == 0:
+    aux = 0
+    for x in col.find({"username": name}, { "_id": 0, "username": 1}):
+        aux = x
+    if aux == 0:
         doc = {
             "_id": email,
             "password": password,
