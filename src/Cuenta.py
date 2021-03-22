@@ -1,7 +1,9 @@
+from multiprocessing import process
 import pymongo
 
-client = pymongo.MongoClient(
-    "mongodb+srv://runnerwar:runnerwar@runnerwar.yuhsa.mongodb.net/RunnerWar?retryWrites=true&w=majority")
+uri = process.env.MONGODB_URI;
+
+client = pymongo.MongoClient(uri)
 
 db = client["RunnerWar"]
 col = db["Cuenta"]
