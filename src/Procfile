@@ -1,1 +1,1 @@
-web: gunicorn login.html
+web: gunicorn DBConnect:app
