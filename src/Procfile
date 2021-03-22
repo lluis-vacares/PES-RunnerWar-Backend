@@ -1,1 +1,1 @@
-web: gunicorn DBConnect:DBConnect
+web: gunicorn DBConnect.py
