@@ -13,6 +13,13 @@ def Create_account():
     for x in Cuenta.create(email, accountname, password, faction):
         return x
 
+@app.route('/edit', methods = ['POST'])
+def Create_account():
+    email = request.json["email"]
+    accountname = request.json["accountname"]
+    for x in Cuenta.edit("accountname", accountname, email):
+        return x
+
 @app.route('/delete', methods = ['POST'])
 def Delete_account():
     email = request.json["email"]

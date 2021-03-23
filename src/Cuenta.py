@@ -29,11 +29,9 @@ def create(email, name, password, faction):
 
 
 def edit(item, new, id):
-    if col.find({item: new}) is None:
-        new = {"$set": {item: new}}
-        col.update_one({"_id": id}, {item: new})
-        return consult(id)
-    return 400
+    new = {"$set": {item: new}}
+    col.update_one({"_id": id}, {item: new})
+    return consult(id)
 
 
 def delete(attribute):
