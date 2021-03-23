@@ -38,5 +38,4 @@ def edit(item, new, id):
 
 def delete(attribute):
     query = {"_id": attribute}
-    col.delete_one(query)
-    return consult(attribute)
+    return col.delete_one(query)
