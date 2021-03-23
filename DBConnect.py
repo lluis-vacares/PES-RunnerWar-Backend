@@ -7,16 +7,17 @@ app = Flask(__name__)
 @app.route('/create', methods = ['POST'])
 def Create_account():
     email = request.json["email"]
-    username = request.json["username"]
+    accountname = request.json["accountname"]
     password = request.json["password"]
     faction = request.json["faction"]
-    for x in Cuenta.create(email, username, password, faction):
+    for x in Cuenta.create(email, accountname, password, faction):
         return x
 
 @app.route('/delete', methods = ['POST'])
 def Delete_account():
     email = request.json["email"]
-    return Cuenta.delete(email)
+    for x in Cuenta.delete(email):
+        return x
 
 
 if __name__ == '__main__':
