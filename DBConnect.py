@@ -16,8 +16,7 @@ def Create_account():
 @app.route('/delete', methods = ['POST'])
 def Delete_account():
     email = request.json["email"]
-    Cuenta.delete(email)
-    return 200
+    return Cuenta.delete(email)
 
 
 if __name__ == '__main__':
