@@ -36,4 +36,5 @@ def edit(item, new, id):
 
 def delete(attribute):
     query = {"_id": attribute}
-    return col.delete_one(query)
+    col.delete_one(query)
+    return {"codi": "200"}
