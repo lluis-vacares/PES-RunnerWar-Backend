@@ -10,8 +10,6 @@ def consult(attribute):
     return col.find({"_id": attribute})
 
 
-
-
 def create(email, name, password, faction):
     aux = 0
     for x in col.find({"accountname": name}, { "_id": 0, "accountname": 1}):
@@ -41,4 +39,4 @@ def edit(item, new, id):
 def delete(attribute):
     query = {"_id": attribute}
     col.delete_one(query)
-    return 200
+    return consult(attribute)
