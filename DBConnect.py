@@ -14,7 +14,7 @@ def Create_account():
         return x
 
 @app.route('/edit', methods = ['POST'])
-def Create_account():
+def Edit_account():
     email = request.json["email"]
     accountname = request.json["accountname"]
     for x in Cuenta.edit("accountname", accountname, email):
