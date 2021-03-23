@@ -30,7 +30,7 @@ def create(email, name, password, faction):
 
 def edit(item, new, id):
     new = {"$set": {item: new}}
-    col.update_one({"_id": id}, {item: new})
+    col.update_one({"_id": id}, new)
     return consult(id)
 
 
