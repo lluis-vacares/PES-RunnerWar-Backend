@@ -14,7 +14,7 @@ def Create_account():
         return x
 
 @app.route('/edit', methods = ['POST'])
-def Edit_account():
+def Edit_accountname():
     email = request.json["email"]
     accountname = request.json["accountname"]
     for x in Cuenta.edit("accountname", accountname, email):
@@ -23,8 +23,7 @@ def Edit_account():
 @app.route('/delete', methods = ['POST'])
 def Delete_account():
     email = request.json["email"]
-    for x in Cuenta.delete(email):
-        return x
+    return Cuenta.delete(email)
 
 
 if __name__ == '__main__':
