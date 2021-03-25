@@ -30,10 +30,10 @@ def create(email, name, password, faction):
 
 def edit(item, new, id):
     aux = 0
-    new = {"$set": {item: new}}
     for x in col.find({"accountname": new}, { "_id": 0, "accountname": 1}):
         aux = x
     if aux == 0:
+        new = {"$set": {item: new}}
         col.update_one({"_id": id}, new)
     return consult(id)
 
