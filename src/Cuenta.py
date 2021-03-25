@@ -19,13 +19,13 @@ def create(email, name, password, faction):
             "_id": email,
             "password": password,
             "accountname": name,
-            "coins": "0",
-            "points": "0",
+            "coins": 0,
+            "points": 0,
             "faction": faction
         }
         col.insert_one(doc)
         return consult(email)
-    return 500
+    return {"codi": "500"}
 
 
 def edit(item, new, id):
