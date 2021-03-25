@@ -25,7 +25,7 @@ def create(email, name, password, faction):
         }
         col.insert_one(doc)
         return consult(email)
-    return {"codi": "500"}
+    return {"codi": 500}
 
 
 def edit(item, new, id):
@@ -37,4 +37,4 @@ def edit(item, new, id):
 def delete(attribute):
     query = {"_id": attribute}
     col.delete_one(query)
-    return {"codi": "200"}
+    return {"codi": 200}
