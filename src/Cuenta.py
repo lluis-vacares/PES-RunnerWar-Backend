@@ -1,6 +1,7 @@
 import pymongo
 
-client = pymongo.MongoClient("mongodb+srv://runnerwar:runnerwar@runnerwar.yuhsa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient(
+    "mongodb+srv://runnerwar:runnerwar@runnerwar.yuhsa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 db = client["RunnerWar"]
 col = db["Cuenta"]
@@ -12,7 +13,7 @@ def consult(attribute):
 
 def create(email, name, password, faction):
     aux = 0
-    for x in col.find({"accountname": name}, { "_id": 0, "accountname": 1}):
+    for x in col.find({"accountname": name}, {"_id": 0, "accountname": 1}):
         aux = x
     if aux == 0:
         doc = {
@@ -28,9 +29,19 @@ def create(email, name, password, faction):
     return {"codi": 500}
 
 
+def login(email, password):
+    aux = 0
+    for x in col.find({"_id": email}, {"_password": password}):
+        aux = x
+    if aux == 0:
+        return {"codi": 500}
+    else:
+        return {"codi": 200}
+
+
 def edit(item, new, id):
     aux = 0
-    for x in col.find({"accountname": new}, { "_id": 0, "accountname": 1}):
+    for x in col.find({"accountname": new}, {"_id": 0, "accountname": 1}):
         aux = x
     if aux == 0:
         new = {"$set": {item: new}}

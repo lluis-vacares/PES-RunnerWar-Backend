@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, request
 from src import Cuenta
 
 app = Flask(__name__)
@@ -26,6 +26,13 @@ def Update_accountname():
 def Delete_account():
     email = request.json["email"]
     return Cuenta.delete(email)
+
+
+@app.route('/login', methods=['GET'])
+def log_in():
+    email = request.json["email"]
+    password = request.json["password"]
+    return Cuenta.login(email, password)
 
 
 if __name__ == '__main__':
