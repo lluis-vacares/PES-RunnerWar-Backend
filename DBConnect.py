@@ -10,8 +10,7 @@ def create_account():
     accountname = request.json["accountname"]
     password = request.json["password"]
     faction = request.json["faction"]
-    for x in Cuenta.create(email, accountname, password, faction):
-        return x
+    return Cuenta.create(email, accountname, password, faction)
 
 
 @app.route('/update_accountname', methods=['PUT'])
@@ -35,13 +34,13 @@ def log_in():
     return Cuenta.login(email, password)
 
 
-@app.route('/consult_email', methods=['GET'])
+@app.route('/consult/email', methods=['GET'])
 def consult_email():
     email = request.json["email"]
     return Cuenta.consult(email)
 
 
-@app.route('/consult_accountname', methods=['GET'])
+@app.route('/consult/accountname', methods=['GET'])
 def consult_accountname():
     accountname = request.json["accountname"]
     return Cuenta.consult(accountname)

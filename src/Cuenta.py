@@ -8,7 +8,10 @@ col = db["Cuenta"]
 
 
 def consult(attribute):
-    return col.find({"_id": attribute})
+    aux = 0
+    for x in col.find({"_id": attribute}):
+        aux = x
+    return aux
 
 
 def create(email, name, password, faction):
