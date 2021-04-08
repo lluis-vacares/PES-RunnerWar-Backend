@@ -41,8 +41,8 @@ def consult_email():
     return Cuenta.consult(email)
 
 
-@app.route('/consult/username', methods=['GET'])
-def consult_username():
+@app.route('/consult/accountname', methods=['GET'])
+def consult_accountname():
     accountname = request.json["accountname"]
     return Cuenta.consult(accountname)
 
