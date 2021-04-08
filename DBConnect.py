@@ -17,8 +17,7 @@ def create_account():
 def update_accountname():
     email = request.json["email"]
     accountname = request.json["accountname"]
-    for x in Cuenta.edit("accountname", accountname, email):
-        return x
+    return Cuenta.edit("accountname", accountname, email)
 
 
 @app.route('/delete', methods=['POST'])
