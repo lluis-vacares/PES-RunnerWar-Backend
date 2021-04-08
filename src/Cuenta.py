@@ -7,9 +7,9 @@ db = client["RunnerWar"]
 col = db["Cuenta"]
 
 
-def consult(attribute):
+def consult(variable, attribute):
     aux = 0
-    for x in col.find({"_id": attribute}):
+    for x in col.find({variable: attribute}):
         aux = x
     return aux
 
@@ -28,7 +28,7 @@ def create(email, name, password, faction):
             "faction": faction
         }
         col.insert_one(doc)
-        return consult(email)
+        return consult("email", email)
     return {"codi": 500}
 
 
@@ -49,7 +49,7 @@ def edit(item, new, id):
     if aux == 0:
         new = {"$set": {item: new}}
         col.update_one({"_id": id}, new)
-    return consult(id)
+    return consult("_id", id)
 
 
 def delete(attribute):

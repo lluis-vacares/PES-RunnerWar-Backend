@@ -37,13 +37,13 @@ def log_in():
 @app.route('/consult/email', methods=['GET'])
 def consult_email():
     email = request.json["email"]
-    return Cuenta.consult(email)
+    return Cuenta.consult("email", email)
 
 
 @app.route('/consult/accountname', methods=['GET'])
 def consult_accountname():
     accountname = request.json["accountname"]
-    return Cuenta.consult(accountname)
+    return Cuenta.consult("accountname", accountname)
 
 
 if __name__ == '__main__':
