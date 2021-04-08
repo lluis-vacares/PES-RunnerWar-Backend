@@ -35,13 +35,13 @@ def log_in():
     return Cuenta.login(email, password)
 
 
-@app.route('/consult/email', methods=['GET'])
+@app.route('/consult_email', methods=['GET'])
 def consult_email():
     email = request.json["email"]
     return Cuenta.consult(email)
 
 
-@app.route('/consult/accountname', methods=['GET'])
+@app.route('/consult_accountname', methods=['GET'])
 def consult_accountname():
     accountname = request.json["accountname"]
     return Cuenta.consult(accountname)
