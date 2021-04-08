@@ -53,3 +53,4 @@ def delete(attribute):
     query = {"_id": attribute}
     col.delete_one(query)
     return {"codi": 200}
+

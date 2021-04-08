@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route('/create', methods=['POST'])
-def Create_account():
+def create_account():
     email = request.json["email"]
     accountname = request.json["accountname"]
     password = request.json["password"]
@@ -15,7 +15,7 @@ def Create_account():
 
 
 @app.route('/update_accountname', methods=['PUT'])
-def Update_accountname():
+def update_accountname():
     email = request.json["email"]
     accountname = request.json["accountname"]
     for x in Cuenta.edit("accountname", accountname, email):
@@ -23,7 +23,7 @@ def Update_accountname():
 
 
 @app.route('/delete', methods=['POST'])
-def Delete_account():
+def delete_account():
     email = request.json["email"]
     return Cuenta.delete(email)
 
@@ -33,6 +33,18 @@ def log_in():
     email = request.json["email"]
     password = request.json["password"]
     return Cuenta.login(email, password)
+
+
+@app.route('/consult/email', methods=['GET'])
+def consult_email():
+    email = request.json["email"]
+    return Cuenta.consult(email)
+
+
+@app.route('/consult/username', methods=['GET'])
+def consult_username():
+    accountname = request.json["accountname"]
+    return Cuenta.consult(accountname)
 
 
 if __name__ == '__main__':
