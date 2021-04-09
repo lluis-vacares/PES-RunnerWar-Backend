@@ -23,9 +23,12 @@ def create(name, date):
 
 def consult_activity(name, date):
     aux = 0
-    for x in col.find({"accountname": name, "date": date}):
+    for x in col.find({"accountname": name, "date": date}, {"_id": 0, "accountname": 1}):
         aux = x
-    return aux
+    if aux == 0:
+        return {"codi": 500}
+    else:
+        return aux
 
 
 def update_activity(name, date, km):
