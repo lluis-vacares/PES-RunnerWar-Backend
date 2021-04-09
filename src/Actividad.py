@@ -29,7 +29,7 @@ def consult_activity(name, date):
     if aux == 0:
         return {"codi": 500}
     else:
-        return {"codi": 200}
+        return aux
 
 
 def update_activity(name, date, km):
@@ -40,6 +40,6 @@ def update_activity(name, date, km):
         return {"codi": 500}
     else:
         myquery = {"accountname": name, "date": date}
-        newvalues = {"$set": {"km": km}}
+        newvalues = {"$inc": {"km": km}}
         col.update_one(myquery, newvalues)
         return {"codi": 200}
