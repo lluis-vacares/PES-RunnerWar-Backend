@@ -40,6 +40,6 @@ def update_activity(name, date, km):
         return {"codi": 500}
     else:
         myquery = {"accountname": name, "date": date}
-        newvalues = {"km": km}
+        newvalues = {"$set": {"km": km}}
         col.update_one(myquery, newvalues)
         return {"codi": 200}
