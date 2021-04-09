@@ -28,8 +28,10 @@ def consult_activity(name, date):
         aux = x
     if aux == 0:
         return {"codi": 500}
-    else:
+    elif aux != 0:
         return aux
+    else:
+        return {"codi": 500}
 
 
 def update_activity(name, date, km):
