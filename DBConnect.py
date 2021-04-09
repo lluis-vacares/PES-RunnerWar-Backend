@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from src import Cuenta
 from src import Actividad
 
@@ -65,7 +65,7 @@ def update_activity():
 def consult_activity():
     accountname = request.json["accountname"]
     date = request.json["date"]
-    return Actividad.consult_activity(accountname, date)
+    return jsonify(Actividad.consult_activity(accountname, date))
 
 
 if __name__ == '__main__':
