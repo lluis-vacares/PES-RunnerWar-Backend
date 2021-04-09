@@ -23,7 +23,7 @@ def create(name, date):
 
 def consult_activity(name, date):
     aux = 0
-    for x in col.find({"accountname": name, "date": date}, {"_id": 0, "accountname": 1}):
+    for x in col.find({"accountname": name, "date": date}, {"_id": 0}):
         aux = x
     if aux == 0:
         return {"codi": 500}
