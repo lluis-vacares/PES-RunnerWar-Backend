@@ -25,12 +25,7 @@ def consult_activity(name, date):
     aux = 0
     for x in col.find({"accountname": name, "date": date}):
         aux = x
-    if aux == 0:
-        return aux
-    elif aux != 0:
-        return aux
-    else:
-        return aux
+    return aux
 
 
 def update_activity(name, date, km):
