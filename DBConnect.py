@@ -46,14 +46,14 @@ def consult_accountname():
     return Cuenta.consult_accountname(accountname)
 
 
-@app.route('create_activity', methods=['POST'])
+@app.route('/create_activity', methods=['POST'])
 def create_activity():
     accountname = request.json["accountname"]
     date = request.json["date"]
     return Actividad.create(accountname, date)
 
 
-@app.route('update_activity', methods=['PUT'])
+@app.route('/update_activity', methods=['PUT'])
 def update_activity():
     accountname = request.json["accountname"]
     date = request.json["date"]
@@ -61,7 +61,7 @@ def update_activity():
     return Actividad.update_activity(accountname, date, km)
 
 
-@app.route('consult/activity', methods=['GET'])
+@app.route('/consult/activity', methods=['GET'])
 def consult_activity():
     accountname = request.json["accountname"]
     date = request.json["date"]
