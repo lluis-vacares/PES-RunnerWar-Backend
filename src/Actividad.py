@@ -18,8 +18,7 @@ def create(name, date):
             "km": 0
         }
         col.insert_one(doc)
-        return consult_activity(name, date)
-    return {"codi": 500}
+    return consult_activity(name, date)
 
 
 def consult_activity(name, date):
@@ -27,11 +26,11 @@ def consult_activity(name, date):
     for x in col.find({"accountname": name, "date": date}):
         aux = x
     if aux == 0:
-        return {"codi": 500}
+        return aux
     elif aux != 0:
         return aux
     else:
-        return {"codi": 500}
+        return aux
 
 
 def update_activity(name, date, km):
