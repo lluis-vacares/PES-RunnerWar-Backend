@@ -1,5 +1,6 @@
 from flask import Flask, request
 from src import Cuenta
+from src import Actividad
 
 app = Flask(__name__)
 
@@ -43,6 +44,28 @@ def consult_email():
 def consult_accountname():
     accountname = request.json["accountname"]
     return Cuenta.consult_accountname(accountname)
+
+
+@app.route('create/activity', methods=['POST'])
+def create_activity():
+    accountname = request.json["accountname"]
+    date = request.json["date"]
+    return Actividad.create(accountname, date)
+
+
+@app.route('update/activity', methods=['PUT'])
+def update_activity():
+    accountname = request.json["accountname"]
+    date = request.json["date"]
+    km = request.json["km"]
+    return Actividad.update_activity(accountname, date, km)
+
+
+@app.route('consult/activity', methods=['GET'])
+def consult_activity():
+    accountname = request.json["accountname"]
+    date = request.json["date"]
+    return Actividad.consult_activity(accountname,date)
 
 
 if __name__ == '__main__':
