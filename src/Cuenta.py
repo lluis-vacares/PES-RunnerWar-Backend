@@ -11,14 +11,21 @@ def consult_email(attribute):
     aux = 0
     for x in col.find({"_id": attribute}):
         aux = x
-    return aux
+    if aux != 0:
+        return aux
+    else:
+        return {"codi": 500}
 
 
 def consult_accountname(attribute):
     aux = 0
     for x in col.find({"accountname": attribute}):
         aux = x
-    return aux
+    if aux != 0:
+        return aux
+    else:
+        return {"codi": 500}
+
 
 
 def create(email, name, password, faction):
