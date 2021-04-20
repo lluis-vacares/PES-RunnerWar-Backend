@@ -53,7 +53,7 @@ def login(email, password):
     if aux == 0:
         return {"codi": 500}
     else:
-        return {"codi": 200}
+        return consult_email(email)
 
 
 def edit(item, new, id):
