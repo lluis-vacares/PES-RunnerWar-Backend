@@ -51,7 +51,13 @@ def login(email, password):
     for x in col.find({"_id": email, "password": password}):
         aux = x
     if aux == 0:
-        return {"codi": 500}
+        return {"_id": None,
+                "password": None,
+                "accountname": None,
+                "coins": None,
+                "points": None,
+                "faction": None
+                }
     else:
         return consult_email(email)
 
