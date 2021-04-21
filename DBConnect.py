@@ -27,7 +27,7 @@ def delete_account():
     return Cuenta.delete(email)
 
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['POST'])
 def log_in():
     email = request.json["email"]
     password = request.json["password"]
