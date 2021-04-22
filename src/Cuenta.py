@@ -11,7 +11,7 @@ col = db["Cuenta"]
 def consult_email(attribute):
     aux = 0
     for x in col.find({"_id": attribute}):
-        return x
+        aux = x
     if aux != 0:
         s1 = json.dumps(aux)
         z = json.loads(s1)
@@ -50,6 +50,7 @@ def create(email, name, password, faction):
             "points": 0,
             "faction": faction
         }
+        col.insert_one(doc)
         y = {"codi": 200}
         z = json.dumps(doc)
         z = json.loads(z)
@@ -68,7 +69,7 @@ def create(email, name, password, faction):
 def login(email, password):
     aux = 0
     for x in col.find({"_id": email, "password": password}):
-        return x
+        aux = x
     if aux == 0:
         return {"_id": None,
                 "password": None,
