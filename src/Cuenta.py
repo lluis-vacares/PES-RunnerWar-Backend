@@ -12,6 +12,7 @@ def consult_email(attribute):
     aux = 0
     for x in col.find({"_id": attribute}):
         aux = x
+
     if aux != 0:
         z = json.loads(aux)
         y = {"codi": 200}
@@ -29,7 +30,7 @@ def consult_accountname(attribute):
     if aux != 0:
         z = aux
         y = {"codi": 200}
-        z.dumps(y)
+        z.update(y)
         return z
     else:
         return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
