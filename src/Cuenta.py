@@ -68,7 +68,7 @@ def create(email, name, password, faction):
 def login(email, password):
     aux = 0
     for x in col.find({"_id": email, "password": password}):
-        aux = x
+        return x
     if aux == 0:
         return {"_id": None,
                 "password": None,
