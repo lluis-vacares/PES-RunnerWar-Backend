@@ -12,7 +12,8 @@ def consult_email(attribute):
     aux = col.find_one({"_id": attribute})
 
     if aux != 0:
-        z = json.loads(aux)
+        s1 = json.dumps(aux)
+        z = json.loads(s1)
         y = {"codi": 200}
         z.update(y)
         return z
