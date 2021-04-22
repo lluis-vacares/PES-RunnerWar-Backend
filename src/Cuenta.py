@@ -63,7 +63,8 @@ def login(email, password):
                 "accountname": None,
                 "coins": None,
                 "points": None,
-                "faction": None
+                "faction": None,
+                "codi": 500
                 }
     else:
         return consult_email(email)
