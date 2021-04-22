@@ -9,7 +9,6 @@ col = db["Cuenta"]
 
 
 def consult_email(attribute):
-
     aux = col.find_one({"_id": attribute})
 
     if aux != 0:
@@ -50,7 +49,11 @@ def create(email, name, password, faction):
             "faction": faction
         }
         col.insert_one(doc)
-        return consult_email(email)
+        x = '{ "_id":' + email + ', "password":' + password + ', "accountname":' + name + ', "coins": 0,"points": 0,'\
+                                                                                          "faction:" + faction + '}'
+        z = json.loads(x)
+        z.update({"codi": 200})
+        return z
     else:
         return {"_id": email,
                 "password": None,
