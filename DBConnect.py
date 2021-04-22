@@ -1,6 +1,8 @@
 from flask import Flask, request
 from src import Cuenta
 from src import Actividad
+from src import Lugar_interes
+from src import Zona_Confrontacion
 
 app = Flask(__name__)
 
@@ -67,6 +69,50 @@ def consult_activity():
     date = request.json["date"]
     return Actividad.consult_activity(accountname, date)
 
+
+@app.route('/create/lugar_interes', methods=['POST'])
+def create_lugar_interes():
+    latitud = request.json["latitud"]
+    longitud = request.json["longitud"]
+    puntuacion = request.json["puntuacion"]
+    return Lugar_interes.create_lugar_interes(latitud, longitud, puntuacion)
+
+
+@app.route('/delete/lugar_interes', methods=['POST'])
+def delete_lugar_interes():
+    latitud = request.json["latitud"]
+    longitud = request.json["longitud"]
+    return Lugar_interes.delete_lugar_interes(latitud, longitud)
+
+
+@app.route('/consult/lugar_interes', methods=['GET'])
+def consult_lugar_interes():
+    latitud = request.json["latitud"]
+    longitud = request.json["longitud"]
+    return Lugar_interes.consult_lugar_interes(latitud, longitud)
+
+
+@app.route('/create/zona_confrontacion', methods=['POST'])
+def create_zona_confrontacion():
+    latitud = request.json["latitud"]
+    longitud = request.json["longitud"]
+    puntuacion = request.json["puntuacion"]
+    equipo_dominante = request.json["equipo_dominante"]
+    return Zona_Confrontacion.create_zona_confrontacion(latitud, longitud, puntuacion, equipo_dominante)
+
+
+@app.route('/delete/zona_confrontacion', methods=['POST'])
+def delete_zona_confrontacion():
+    latitud = request.json["latitud"]
+    longitud = request.json["longitud"]
+    return Zona_Confrontacion.delete_zona_confrontacion(latitud, longitud)
+
+
+@app.route('/consult/zona_confrontacion', methods=['GET'])
+def consult_zona_confrontacion():
+    latitud = request.json["latitud"]
+    longitud = request.json["longitud"]
+    return Zona_Confrontacion.consult_lugar_interes(latitud, longitud)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
