@@ -14,7 +14,8 @@ def consult_email(attribute):
     if aux != 0:
         return aux
     else:
-        return {"codi": 500}
+        return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
+                "codi": 500}
 
 
 def consult_accountname(attribute):
@@ -24,8 +25,8 @@ def consult_accountname(attribute):
     if aux != 0:
         return aux
     else:
-        return {"codi": 500}
-
+        return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
+                "codi": 500}
 
 
 def create(email, name, password, faction):
@@ -43,7 +44,13 @@ def create(email, name, password, faction):
         }
         col.insert_one(doc)
         return consult_email(email)
-    return {"codi": 500}
+    return {"_id": email,
+            "password": None,
+            "accountname": None,
+            "coins": None,
+            "points": None,
+            "faction": None,
+            "codi": 500}
 
 
 def login(email, password):

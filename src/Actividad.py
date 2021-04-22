@@ -26,7 +26,7 @@ def consult_activity(name, date):
     for x in col.find({"accountname": name, "date": date}, {"_id": 0}):
         aux = x
     if aux == 0:
-        return {"codi": 500}
+        return {"accountname": None, "date": None, "km": None, "codi": 500}
     else:
         return aux
 
@@ -36,9 +36,9 @@ def update_activity(name, date, km):
     for x in col.find({"accountname": name, "date": date}):
         aux = x
     if aux == 0:
-        return {"codi": 500}
+        return {"accountname": None, "date": None, "km": None, "codi": 500}
     else:
         myquery = {"accountname": name, "date": date}
         newvalues = {"$inc": {"km": km}}
         col.update_one(myquery, newvalues)
-        return {"codi": 200}
+        return {"accountname": name, "date": date, "km": km, "codi": 200}
