@@ -1,4 +1,5 @@
 import pymongo
+import json
 
 client = pymongo.MongoClient(
     "mongodb+srv://runnerwar:runnerwar@runnerwar.yuhsa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -12,9 +13,9 @@ def consult_email(attribute):
     for x in col.find({"_id": attribute}):
         aux = x
     if aux != 0:
-        z = aux
+        z = json.loads(aux)
         y = {"codi": 200}
-        z.dumps(y)
+        z.update(y)
         return z
     else:
         return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
@@ -50,13 +51,14 @@ def create(email, name, password, faction):
         }
         col.insert_one(doc)
         return consult_email(email)
-    return {"_id": email,
-            "password": None,
-            "accountname": None,
-            "coins": None,
-            "points": None,
-            "faction": None,
-            "codi": 500}
+    else:
+        return {"_id": email,
+                "password": None,
+                "accountname": None,
+                "coins": None,
+                "points": None,
+                "faction": None,
+                "codi": 500}
 
 
 def login(email, password):
