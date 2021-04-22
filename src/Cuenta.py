@@ -48,11 +48,10 @@ def create(email, name, password, faction):
             "points": 0,
             "faction": faction
         }
-        col.insert_one(doc)
-        x = '{ "_id":' + email + ', "password":' + password + ', "accountname":' + name + ', "coins": 0,"points": 0,'\
-                                                                                          "faction:" + faction + '}'
-        z = json.loads(x)
-        z.update({"codi": 200})
+        y = {"codi": 200}
+        z = json.dumps(doc)
+        z = json.loads(z)
+        z.update(y)
         return z
     else:
         return {"_id": email,
