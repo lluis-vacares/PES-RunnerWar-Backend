@@ -9,9 +9,8 @@ col = db["Cuenta"]
 
 
 def consult_email(attribute):
-    aux = 0
-    for x in col.find({"_id": attribute}):
-        aux = x
+
+    aux = col.find_one({"_id": attribute})
 
     if aux != 0:
         z = json.loads(aux)
