@@ -12,7 +12,10 @@ def consult_email(attribute):
     for x in col.find({"_id": attribute}):
         aux = x
     if aux != 0:
-        return aux
+        z = aux
+        y = {"codi": 200}
+        z.dumps(y)
+        return z
     else:
         return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
                 "codi": 500}
@@ -23,7 +26,10 @@ def consult_accountname(attribute):
     for x in col.find({"accountname": attribute}):
         aux = x
     if aux != 0:
-        return aux
+        z = aux
+        y = {"codi": 200}
+        z.dumps(y)
+        return z
     else:
         return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
                 "codi": 500}
