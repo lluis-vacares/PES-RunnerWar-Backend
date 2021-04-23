@@ -83,7 +83,7 @@ def login(email, password):
         return consult_email(email)
 
 
-def edit(item, new, id):
+def update(item, new, id):
     aux = 0
     for x in col.find({"accountname": new}, {"_id": 0, "accountname": 1}):
         aux = x
