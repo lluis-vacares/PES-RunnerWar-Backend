@@ -112,7 +112,15 @@ def delete_zona_confrontacion():
 def consult_zona_confrontacion():
     latitud = request.json["latitud"]
     longitud = request.json["longitud"]
-    return Zona_Confrontacion.consult_lugar_interes(latitud, longitud)
+    return Zona_Confrontacion.consult_zona_confrontacion(latitud, longitud)
+
+
+@app.route('/update/cuenta/faction', methods=['POST'])
+def update_faction():
+    accountname = request.json["accountname"]
+    faction = request.json["faction"]
+    return Cuenta.update_faccion(accountname, faction)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

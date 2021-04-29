@@ -38,7 +38,7 @@ def delete_zona_confrontacion(latitud,longitud):
     col.delete_one({"latitud": latitud, "longitud": longitud})
     return {"codi": 200}
 
-def consult_lugar_interes(latitud, longitud):
+def consult_zona_confrontacion(latitud, longitud):
     aux = 0
     for x in col.find({"latitud": latitud, "longitud": longitud}, {"_id": 0, "latitud": 1, "longitud": 1,
                                                                    "puntuacion": 1, "equipo_dominante": 1}):
