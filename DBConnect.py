@@ -48,6 +48,13 @@ def consult_accountname():
     return Cuenta.consult_accountname(accountname)
 
 
+@app.route('/update/cuenta/faction', methods=['POST'])
+def update_faction():
+    accountname = request.json["accountname"]
+    faction = request.json["faction"]
+    return Cuenta.update_faccion(accountname, faction)
+
+
 @app.route('/create/activity', methods=['POST'])
 def create_activity():
     accountname = request.json["accountname"]
@@ -72,24 +79,23 @@ def consult_activity():
 
 @app.route('/create/lugar_interes', methods=['POST'])
 def create_lugar_interes():
+    nombre = request.json["nombre"]
     latitud = request.json["latitud"]
     longitud = request.json["longitud"]
-    puntuacion = request.json["puntuacion"]
-    return Lugar_interes.create_lugar_interes(latitud, longitud, puntuacion)
+    descripcion = request.json["descripcion"]
+    return Lugar_interes.create_lugar_interes(nombre, latitud, longitud, descripcion)
 
 
 @app.route('/delete/lugar_interes', methods=['POST'])
 def delete_lugar_interes():
-    latitud = request.json["latitud"]
-    longitud = request.json["longitud"]
-    return Lugar_interes.delete_lugar_interes(latitud, longitud)
+    nombre = request.json["nombre"]
+    return Lugar_interes.delete_lugar_interes(nombre)
 
 
 @app.route('/consult/lugar_interes', methods=['GET'])
 def consult_lugar_interes():
-    latitud = request.json["latitud"]
-    longitud = request.json["longitud"]
-    return Lugar_interes.consult_lugar_interes(latitud, longitud)
+    nombre = request.json["nombre"]
+    return Lugar_interes.consult_lugar_interes(nombre)
 
 
 @app.route('/create/zona_confrontacion', methods=['POST'])
@@ -115,11 +121,6 @@ def consult_zona_confrontacion():
     return Zona_Confrontacion.consult_zona_confrontacion(latitud, longitud)
 
 
-@app.route('/update/cuenta/faction', methods=['POST'])
-def update_faction():
-    accountname = request.json["accountname"]
-    faction = request.json["faction"]
-    return Cuenta.update_faccion(accountname, faction)
 
 
 if __name__ == '__main__':

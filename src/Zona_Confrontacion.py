@@ -34,9 +34,10 @@ def create_zona_confrontacion(latitud, longitud, puntuacion, equipo_dominante):
             "codi": 500}
 
 
-def delete_zona_confrontacion(latitud,longitud):
+def delete_zona_confrontacion(latitud, longitud):
     col.delete_one({"latitud": latitud, "longitud": longitud})
     return {"codi": 200}
+
 
 def consult_zona_confrontacion(latitud, longitud):
     aux = 0

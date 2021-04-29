@@ -8,15 +8,16 @@ db = client["RunnerWar"]
 col = db["Lugar_Interes"]
 
 
-def create_lugar_interes(latitud, longitud, puntuacion):
+def create_lugar_interes(nombre, latitud, longitud, descripcion):
     aux = 0
-    for x in col.find({"latitud": latitud, "longitud": longitud}, {"_id": 0, "accountname": 1}):
+    for x in col.find({"_id": nombre, "latitud": latitud, "longitud": longitud}, {"_id": 1, "accountname": 1}):
         aux = x
     if aux == 0:
         doc = {
+            "_id": nombre,
             "latitud": latitud,
             "longitud": longitud,
-            "puntuacion": puntuacion
+            "descripcion": descripcion
         }
         col.insert_one(doc)
         y = {"codi": 200}
@@ -26,21 +27,21 @@ def create_lugar_interes(latitud, longitud, puntuacion):
         return z
     else:
         return {
+            "_id": None,
             "latitud": None,
             "longitud": None,
-            "puntuacion": None,
+            "descripcion": None,
             "codi": 500}
 
 
-def delete_lugar_interes(latitud, longitud):
-    col.delete_one({"latitud": latitud, "longitud": longitud})
+def delete_lugar_interes(nombre):
+    col.delete_one({"_id": nombre})
     return {"codi": 200}
 
 
-def consult_lugar_interes(latitud, longitud):
+def consult_lugar_interes(nombre):
     aux = 0
-    for x in col.find({"latitud": latitud, "longitud": longitud}, {"_id": 0, "latitud": 1, "longitud": 1,
-                                                                   "puntuacion": 1}):
+    for x in col.find({"_id": nombre}):
         aux = x
     if aux != 0:
         s1 = json.dumps(aux)
@@ -49,7 +50,5 @@ def consult_lugar_interes(latitud, longitud):
         z.update(y)
         return z
     else:
-        return {"latitud": None, "longitud": None, "puntuacion": None,
+        return {"_id": None, "latitud": None, "longitud": None, "descripcion": None,
                 "codi": 500}
-
-
