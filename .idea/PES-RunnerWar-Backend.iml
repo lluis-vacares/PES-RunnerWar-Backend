@@ -15,4 +15,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Python 3.8 (PES-RunnerWar-Backend) interpreter library" level="application" />
   </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="C:\Users\marc0\IdeaProjects\PES-RunnerWar-Backend\requirements.txt" />
+  </component>
 </module>
