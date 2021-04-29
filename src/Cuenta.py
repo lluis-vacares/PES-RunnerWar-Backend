@@ -23,6 +23,20 @@ def consult_email(attribute):
                 "codi": 500}
 
 
+def consult_other_account(accountname):
+    aux = 0
+    for x in col.find({"accountname": accountname}, {"password": 0}):
+        aux = x
+    if aux != 0:
+        s1 = json.dumps(aux)
+        z = json.loads(s1)
+        y = {"codi": 200}
+        z.update(y)
+        return z
+    else:
+        return {"_id": None, "accountname": None, "coins": None, "points": None, "faction": None,
+                "codi": 500}
+
 def consult_accountname(attribute):
     aux = 0
     for x in col.find({"accountname": attribute}):

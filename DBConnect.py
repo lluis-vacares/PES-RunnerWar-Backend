@@ -48,6 +48,12 @@ def consult_accountname():
     return Cuenta.consult_accountname(accountname)
 
 
+@app.route('/consult/other/account', methods=['GET'])
+def consult_other_account():
+    accountname = request.json["accountname"]
+    return Cuenta.consult_other_account(accountname)
+
+
 @app.route('/update/cuenta/faction', methods=['POST'])
 def update_faction():
     accountname = request.json["accountname"]
