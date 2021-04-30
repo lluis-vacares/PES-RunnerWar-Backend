@@ -52,9 +52,7 @@ def consult_accountname(attribute):
 
 
 def create(email, name, password, faction):
-    aux = 0
-    for x in col.find({"accountname": name}, {"_id": 0, "accountname": 1}):
-        aux = x
+    aux = col.count_documents({"accountname": name})
     if aux == 0:
         doc = {
             "_id": email,

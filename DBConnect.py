@@ -1,5 +1,5 @@
 from flask import Flask, request
-from src import Cuenta
+from src import Cuenta, Amigo
 from src import Actividad
 from src import Lugar_interes
 from src import Zona_Confrontacion
@@ -127,6 +127,26 @@ def consult_zona_confrontacion():
     return Zona_Confrontacion.consult_zona_confrontacion(latitud, longitud)
 
 
+# Connexion Amigo
+@app.route('/friend/add', methods=['POST'])
+def add_friend():
+    email1 = request.json["email1"]
+    email2 = request.json["email2"]
+    return Amigo.aggregate(email1, email2)
+
+
+@app.route('/friend/search', methods=['POST'])
+def search_friendship():
+    email1 = request.json["email1"]
+    email2 = request.json["email2"]
+    return Amigo.search(email1, email2)
+
+
+@app.route('/friend/delete', methods=['POST'])
+def delete_friend():
+    email1 = request.json["email1"]
+    email2 = request.json["email2"]
+    return Amigo.delete(email1, email2)
 
 
 if __name__ == '__main__':
