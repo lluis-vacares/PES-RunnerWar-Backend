@@ -109,6 +109,11 @@ def get_all_lugar_interes():
     return Lugar_interes.get_all_lugar_interes()
 
 
+@app.route('/prova', methods=['GET'])
+def prova():
+    return Lugar_interes.prova()
+
+
 @app.route('/create/zona_confrontacion', methods=['POST'])
 def create_zona_confrontacion():
     latitud = request.json["latitud"]
