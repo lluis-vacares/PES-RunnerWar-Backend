@@ -109,11 +109,6 @@ def get_all_lugar_interes():
     return Lugar_interes.get_all_lugar_interes()
 
 
-@app.route('/prova', methods=['GET'])
-def prueba():
-    return Lugar_interes.prueba()
-
-
 @app.route('/create/zona_confrontacion', methods=['POST'])
 def create_zona_confrontacion():
     latitud = request.json["latitud"]
@@ -140,23 +135,28 @@ def consult_zona_confrontacion():
 # Connexion Amigo
 @app.route('/friend/add', methods=['POST'])
 def add_friend():
-    email1 = request.json["email1"]
-    email2 = request.json["email2"]
-    return Amigo.aggregate(email1, email2)
+    accountname1 = request.json["accountname1"]
+    accountname2 = request.json["accountname2"]
+    return Amigo.aggregate(accountname1, accountname2)
 
 
 @app.route('/friend/search', methods=['POST'])
 def search_friendship():
-    email1 = request.json["email1"]
-    email2 = request.json["email2"]
-    return Amigo.search(email1, email2)
+    accountname1 = request.json["accountname1"]
+    accountname2 = request.json["accountname2"]
+    return Amigo.search(accountname1, accountname2)
 
 
 @app.route('/friend/delete', methods=['POST'])
 def delete_friend():
-    email1 = request.json["email1"]
-    email2 = request.json["email2"]
-    return Amigo.delete(email1, email2)
+    accountname1 = request.json["accountname1"]
+    accountname2 = request.json["accountname2"]
+    return Amigo.delete(accountname1, accountname2)
+
+@app.route('/friends', methods=['POST'])
+def get_friends():
+    accountname = request.json["accountname"]
+    return Amigo.get_friends(accountname)
 
 
 if __name__ == '__main__':

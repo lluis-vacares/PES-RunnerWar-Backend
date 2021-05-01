@@ -60,7 +60,3 @@ def get_all_lugar_interes():
         a.append(x)
     js = json.dumps(a)
     return js
-
-
-def prueba():
-    return col.find_one()
