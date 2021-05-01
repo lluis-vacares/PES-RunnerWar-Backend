@@ -153,6 +153,7 @@ def delete_friend():
     accountname2 = request.json["accountname2"]
     return Amigo.delete(accountname1, accountname2)
 
+
 @app.route('/friends', methods=['POST'])
 def get_friends():
     accountname = request.json["accountname"]
