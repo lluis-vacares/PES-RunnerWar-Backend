@@ -62,5 +62,5 @@ def get_all_lugar_interes():
     return js
 
 
-def prova():
+def prueba():
     return col.find_one()

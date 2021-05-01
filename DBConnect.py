@@ -110,8 +110,8 @@ def get_all_lugar_interes():
 
 
 @app.route('/prova', methods=['GET'])
-def prova():
-    return Lugar_interes.prova()
+def prueba():
+    return Lugar_interes.prueba()
 
 
 @app.route('/create/zona_confrontacion', methods=['POST'])
