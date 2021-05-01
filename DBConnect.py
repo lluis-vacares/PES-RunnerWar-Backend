@@ -133,21 +133,21 @@ def consult_zona_confrontacion():
 
 
 # Connexion Amigo
-@app.route('/friend/add', methods=['POST'])
+@app.route('/add_friend', methods=['POST'])
 def add_friend():
     accountname1 = request.json["accountname1"]
     accountname2 = request.json["accountname2"]
     return Amigo.aggregate(accountname1, accountname2)
 
 
-@app.route('/friend/search', methods=['POST'])
+@app.route('/search_friend', methods=['POST'])
 def search_friendship():
     accountname1 = request.json["accountname1"]
     accountname2 = request.json["accountname2"]
     return Amigo.search(accountname1, accountname2)
 
 
-@app.route('/friend/delete', methods=['POST'])
+@app.route('/delete_friend', methods=['POST'])
 def delete_friend():
     accountname1 = request.json["accountname1"]
     accountname2 = request.json["accountname2"]
