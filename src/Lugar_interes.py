@@ -58,4 +58,5 @@ def get_all_lugar_interes():
     a = []
     for x in col.find():
         a.append(x)
-    return a
+    js = json.dumps(a)
+    return js
