@@ -55,5 +55,7 @@ def consult_lugar_interes(nombre):
 
 
 def get_all_lugar_interes():
-    x = col.find()
-    return x
+    aux = 0
+    for x in col.find():
+        aux += x
+    return aux
