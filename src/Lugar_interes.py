@@ -1,3 +1,5 @@
+
+
 import pymongo
 import json
 
@@ -55,7 +57,7 @@ def consult_lugar_interes(nombre):
 
 
 def get_all_lugar_interes():
-    aux = 0
+    aux: dict = {}
     for x in col.find():
-        aux += x
+        aux.update(x)
     return aux
