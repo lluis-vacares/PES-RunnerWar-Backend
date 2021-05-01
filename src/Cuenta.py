@@ -115,25 +115,10 @@ def update_faccion(accountname, faccion):
     for x in col.find({"accountname": accountname }):
         aux = x
     if aux == 0:
-        return {"_id": None,
-                "password": None,
-                "accountname": None,
-                "coins": None,
-                "points": None,
-                "faction": None,
-                "codi": 500}
+        return { "codi": 500}
     else:
         myquery = {"accountname": accountname}
         newvalues = {"$set": {"faction": faccion}}
         col.update_one(myquery, newvalues)
-        q = 0
-        for x in col.find({"accountname": accountname }):
-            q = x
-
-        y = {"codi": 200}
-        z = json.dumps(q)
-        z = json.loads(z)
-        z.update(y)
-
-        return z
+        return {"codi": 200}
 

@@ -52,3 +52,8 @@ def consult_lugar_interes(nombre):
     else:
         return {"_id": None, "latitud": None, "longitud": None, "descripcion": None,
                 "codi": 500}
+
+
+def get_all_lugar_interes():
+    x = col.find()
+    return x
