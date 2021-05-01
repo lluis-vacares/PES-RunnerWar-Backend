@@ -104,7 +104,7 @@ def consult_lugar_interes():
     return Lugar_interes.consult_lugar_interes(nombre)
 
 
-@app.route('/get/lugar_interes', methods=['POST'])
+@app.route('/get/lugar_interes', methods=['GET'])
 def get_all_lugar_interes():
     return Lugar_interes.get_all_lugar_interes()
 
