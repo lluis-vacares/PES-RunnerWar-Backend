@@ -3,6 +3,7 @@ from src import Cuenta, Amigo
 from src import Actividad
 from src import Lugar_interes
 from src import Zona_Confrontacion
+from src import Chat
 
 app = Flask(__name__)
 
@@ -165,6 +166,21 @@ def delete_friend():
 def get_friends():
     accountname = request.json["accountname"]
     return Amigo.get_friends(accountname)
+
+
+@app.route('/chat/create', methods = ['POST'])
+def create_chat():
+    email = request.json["email"]
+    date = request.json["date"]
+    participant = request.json["participant"]
+    return Chat.create_chat(email, date, participant)
+
+
+@app.route('/chat/delete', methods = ['POST'])
+def delete_chat():
+    email = request.json["email"]
+    participant = request.json["participant"]
+    return Chat.delete_chat(email, participant)
 
 
 if __name__ == '__main__':
