@@ -110,15 +110,33 @@ def delete(attribute):
     col.delete_one(query)
     return {"codi": 200}
 
-def update_faccion(accountname, faccion):
+def update_faccion(email, faccion):
     aux = 0
-    for x in col.find({"accountname": accountname }):
+    for x in col.find({"_id": email }):
         aux = x
     if aux == 0:
         return { "codi": 500}
     else:
-        myquery = {"accountname": accountname}
+        myquery = {"_id": email}
         newvalues = {"$set": {"faction": faccion}}
         col.update_one(myquery, newvalues)
         return {"codi": 200}
 
+def add_points(email, points):
+    aux = 0
+    for x in col.find({"_id": email}):
+        aux = x
+    if aux == 0:
+        return {
+                "_id": None,
+                "password": None,
+                "accountname": None,
+                "points": None,
+                "faction": None,
+                "codi": 500
+                }
+    else:
+        myquery = {"_id": email}
+        newvalues = {"$inc": {"points": points}}
+        col.update_one(myquery, newvalues)
+        return consult_email(email)

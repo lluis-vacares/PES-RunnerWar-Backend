@@ -56,9 +56,16 @@ def consult_other_account():
 
 @app.route('/update/cuenta/faction', methods=['POST'])
 def update_faction():
-    accountname = request.json["accountname"]
+    email = request.json["email"]
     faction = request.json["faction"]
-    return Cuenta.update_faccion(accountname, faction)
+    return Cuenta.update_faccion(email, faction)
+
+
+@app.route('/points/add', methods=['PUT'])
+def add_points():
+    email = request.json["email"]
+    points = request.json["points"]
+    return Cuenta.add_points(email, points)
 
 
 @app.route('/create/activity', methods=['POST'])
