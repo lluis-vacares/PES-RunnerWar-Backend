@@ -86,13 +86,8 @@ def update_activity():
 
 @app.route('/consult/activity', methods=['GET'])
 def consult_activity():
-    accountname = request.json["accountname"]
-    date = request.json["date"]
-
-    if accountname is None:
-        accountname = request.args.get('accountname')
-        date = request.args.get('date')
-
+    accountname = request.args.get('accountname')
+    date = request.args.get('date')
     return Actividad.consult_activity(accountname, date)
 
 
