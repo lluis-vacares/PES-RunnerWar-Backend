@@ -50,7 +50,7 @@ def consult_accountname():
     return Cuenta.consult_accountname(accountname)
 
 
-@app.route('/consult/other/account', methods=['GET'])
+@app.route('/consult/other/account', methods=['POST'])
 def consult_other_account():
     accountname = request.args('accountname')
     return Cuenta.consult_other_account(accountname)
