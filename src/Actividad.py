@@ -1,3 +1,5 @@
+import json
+
 import pymongo
 
 client = pymongo.MongoClient(
@@ -28,7 +30,11 @@ def consult_activity(name, date):
     if aux == 0:
         return {"accountname": None, "date": None, "km": None, "codi": 500}
     else:
-        return aux
+        y = {"codi": 200}
+        z = json.dumps(aux)
+        z = json.loads(z)
+        z.update(y)
+        return z
 
 
 def update_activity(name, date, km):
