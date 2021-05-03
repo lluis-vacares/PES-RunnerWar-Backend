@@ -84,10 +84,15 @@ def update_activity():
     return Actividad.update_activity(accountname, date, km)
 
 
-@app.route('/consult/activity', methods=['POST'])
+@app.route('/consult/activity', methods=['GET'])
 def consult_activity():
     accountname = request.json["accountname"]
     date = request.json["date"]
+
+    if accountname is None:
+        accountname = request.args.get('accountname')
+        date = request.args.get('date')
+
     return Actividad.consult_activity(accountname, date)
 
 
@@ -168,7 +173,7 @@ def get_friends():
     return Amigo.get_friends(accountname)
 
 
-@app.route('/chat/create', methods = ['POST'])
+@app.route('/chat/create', methods=['POST'])
 def create_chat():
     email = request.json["email"]
     date = request.json["date"]
@@ -176,7 +181,7 @@ def create_chat():
     return Chat.create_chat(email, date, participant)
 
 
-@app.route('/chat/delete', methods = ['POST'])
+@app.route('/chat/delete', methods=['POST'])
 def delete_chat():
     email = request.json["email"]
     participant = request.json["participant"]
