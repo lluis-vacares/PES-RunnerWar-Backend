@@ -8,16 +8,22 @@ db = client["RunnerWar"]
 col = db["Zona_Confrontacion"]
 
 
-def create_zona_confrontacion(latitud, longitud, puntuacion, equipo_dominante):
+def create_zona_confrontacion(nombre, latitud, longitud, puntuacion, descripcion):
     aux = 0
-    for x in col.find({"latitud": latitud, "longitud": longitud}, {"_id": 0, "accountname": 1}):
+    for x in col.find({"_id": nombre}):
         aux = x
     if aux == 0:
         doc = {
+            "_id": nombre,
             "latitud": latitud,
             "longitud": longitud,
             "puntuacion": puntuacion,
-            "equipo_dominante": equipo_dominante
+            "descripcion": descripcion,
+            "dominant_team": None,
+            "red_occupation": 0,
+            "blue_occupation": 0,
+            "yellow_occupation": 0,
+            "green_occupation": 0
         }
         col.insert_one(doc)
         y = {"codi": 200}
@@ -27,22 +33,27 @@ def create_zona_confrontacion(latitud, longitud, puntuacion, equipo_dominante):
         return z
     else:
         return {
+            "_id": None,
             "latitud": None,
             "longitud": None,
             "puntuacion": None,
-            "equipo_dominante": None,
+            "descripcion": None,
+            "dominant_team": None,
+            "red_occupation": None,
+            "blue_occupation": None,
+            "yellow_occupation": None,
+            "green_occupation": None,
             "codi": 500}
 
 
-def delete_zona_confrontacion(latitud, longitud):
-    col.delete_one({"latitud": latitud, "longitud": longitud})
+def delete_zona_confrontacion(nombre):
+    col.delete_one({"nombre": nombre})
     return {"codi": 200}
 
 
-def consult_zona_confrontacion(latitud, longitud):
+def consult_zona_confrontacion(nombre):
     aux = 0
-    for x in col.find({"latitud": latitud, "longitud": longitud}, {"_id": 0, "latitud": 1, "longitud": 1,
-                                                                   "puntuacion": 1, "equipo_dominante": 1}):
+    for x in col.find({"_id": nombre}):
         aux = x
     if aux != 0:
         s1 = json.dumps(aux)
@@ -51,5 +62,16 @@ def consult_zona_confrontacion(latitud, longitud):
         z.update(y)
         return z
     else:
-        return {"latitud": None, "longitud": None, "puntuacion": None, "equipo_dominante": None,
-                "codi": 500}
+        return {
+            "_id": None,
+            "latitud": None,
+            "longitud": None,
+            "puntuacion": None,
+            "descripcion": None,
+            "dominant_team": None,
+            "red_occupation": None,
+            "blue_occupation": None,
+            "yellow_occupation": None,
+            "green_occupation": None,
+            "codi": 500}
+

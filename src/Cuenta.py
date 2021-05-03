@@ -20,6 +20,7 @@ def consult_email(attribute):
         return z
     else:
         return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
+                "last_connection": None,
                 "codi": 500}
 
 
@@ -35,7 +36,9 @@ def consult_other_account(accountname):
         return z
     else:
         return {"_id": None, "accountname": None, "coins": None, "points": None, "faction": None,
+                "last_connection": None,
                 "codi": 500}
+
 
 def consult_accountname(attribute):
     aux = 0
@@ -48,10 +51,10 @@ def consult_accountname(attribute):
         return z
     else:
         return {"_id": None, "password": None, "accountname": None, "coins": None, "points": None, "faction": None,
-                "codi": 500}
+                "last_connection": None, "codi": 500}
 
 
-def create(email, name, password, faction):
+def create(email, name, password, faction, last_connection):
     aux = col.count_documents({"accountname": name})
     if aux == 0:
         doc = {
@@ -60,7 +63,8 @@ def create(email, name, password, faction):
             "accountname": name,
             "coins": 0,
             "points": 0,
-            "faction": faction
+            "faction": faction,
+            "last_connection": last_connection
         }
         col.insert_one(doc)
         y = {"codi": 200}
@@ -89,6 +93,7 @@ def login(email, password):
                 "coins": None,
                 "points": None,
                 "faction": None,
+                "last_connection": None,
                 "codi": 500
                 }
     else:
@@ -110,6 +115,7 @@ def delete(attribute):
     col.delete_one(query)
     return {"codi": 200}
 
+
 def update_faccion(email, faccion):
     aux = 0
     for x in col.find({"_id": email }):
@@ -122,6 +128,7 @@ def update_faccion(email, faccion):
         col.update_one(myquery, newvalues)
         return {"codi": 200}
 
+
 def add_points(email, points):
     aux = 0
     for x in col.find({"_id": email}):
@@ -133,6 +140,7 @@ def add_points(email, points):
                 "accountname": None,
                 "points": None,
                 "faction": None,
+                "last_connection": None,
                 "codi": 500
                 }
     else:

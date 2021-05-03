@@ -14,7 +14,8 @@ def create_account():
     accountname = request.json["accountname"]
     password = request.json["password"]
     faction = request.json["faction"]
-    return Cuenta.create(email, accountname, password, faction)
+    last_connection = request.json["last_connection"]
+    return Cuenta.create(email, accountname, password, faction, last_connection)
 
 
 @app.route('/update_accountname', methods=['PUT'])
@@ -39,19 +40,19 @@ def log_in():
 
 @app.route('/consult/email', methods=['GET'])
 def consult_email():
-    email = request.json["email"]
+    email = request.args('email')
     return Cuenta.consult_email(email)
 
 
 @app.route('/consult/accountname', methods=['POST'])
 def consult_accountname():
-    accountname = request.json["accountname"]
+    accountname = request.args('accountname')
     return Cuenta.consult_accountname(accountname)
 
 
-@app.route('/consult/other/account', methods=['POST'])
+@app.route('/consult/other/account', methods=['GET'])
 def consult_other_account():
-    accountname = request.json["accountname"]
+    accountname = request.args('accountname')
     return Cuenta.consult_other_account(accountname)
 
 
@@ -106,9 +107,9 @@ def delete_lugar_interes():
     return Lugar_interes.delete_lugar_interes(nombre)
 
 
-@app.route('/consult/lugar_interes', methods=['POST'])
+@app.route('/consult/lugar_interes', methods=['GET'])
 def consult_lugar_interes():
-    nombre = request.json["nombre"]
+    nombre = request.args('nombre')
     return Lugar_interes.consult_lugar_interes(nombre)
 
 
@@ -119,25 +120,24 @@ def get_all_lugar_interes():
 
 @app.route('/create/zona_confrontacion', methods=['POST'])
 def create_zona_confrontacion():
+    nombre = request.json["nombre"]
     latitud = request.json["latitud"]
     longitud = request.json["longitud"]
     puntuacion = request.json["puntuacion"]
-    equipo_dominante = request.json["equipo_dominante"]
-    return Zona_Confrontacion.create_zona_confrontacion(latitud, longitud, puntuacion, equipo_dominante)
+    descripcion = request.json["descripcion"]
+    return Zona_Confrontacion.create_zona_confrontacion(nombre,latitud, longitud, puntuacion, descripcion)
 
 
 @app.route('/delete/zona_confrontacion', methods=['POST'])
 def delete_zona_confrontacion():
-    latitud = request.json["latitud"]
-    longitud = request.json["longitud"]
-    return Zona_Confrontacion.delete_zona_confrontacion(latitud, longitud)
+    nombre = request.json["nombre"]
+    return Zona_Confrontacion.delete_zona_confrontacion(nombre)
 
 
-@app.route('/consult/zona_confrontacion', methods=['POST'])
+@app.route('/consult/zona_confrontacion', methods=['GET'])
 def consult_zona_confrontacion():
-    latitud = request.json["latitud"]
-    longitud = request.json["longitud"]
-    return Zona_Confrontacion.consult_zona_confrontacion(latitud, longitud)
+    nombre = request.args('nombre')
+    return Zona_Confrontacion.consult_zona_confrontacion(nombre)
 
 
 # Connexion Amigo
