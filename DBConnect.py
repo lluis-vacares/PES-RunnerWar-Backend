@@ -148,10 +148,10 @@ def add_friend():
     return Amigo.aggregate(accountname1, accountname2)
 
 
-@app.route('/search_friend', methods=['POST'])
+@app.route('/search_friend', methods=['GET'])
 def search_friendship():
-    accountname1 = request.json["accountname1"]
-    accountname2 = request.json["accountname2"]
+    accountname1 = request.args('accountname1')
+    accountname2 = request.args('accountname2')
     return Amigo.search(accountname1, accountname2)
 
 
@@ -162,9 +162,9 @@ def delete_friend():
     return Amigo.delete(accountname1, accountname2)
 
 
-@app.route('/friends', methods=['POST'])
+@app.route('/friends', methods=['GET'])
 def get_friends():
-    accountname = request.json["accountname"]
+    accountname = request.args('accountname')
     return Amigo.get_friends(accountname)
 
 
