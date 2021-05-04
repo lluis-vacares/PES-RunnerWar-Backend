@@ -79,6 +79,7 @@ def create(email, name, password, faction, last_connection):
                 "coins": None,
                 "points": None,
                 "faction": None,
+                "last_connection": None,
                 "codi": 500}
 
 
@@ -148,3 +149,16 @@ def add_points(email, points):
         newvalues = {"$inc": {"points": points}}
         col.update_one(myquery, newvalues)
         return consult_email(email)
+
+
+def update_last_connection(email, last_connection):
+    aux = 0
+    for x in col.find({"_id": email }):
+        aux = x
+    if aux == 0:
+        return { "codi": 500}
+    else:
+        myquery = {"_id": email}
+        newvalues = {"$set": {"last_connection": last_connection}}
+        col.update_one(myquery, newvalues)
+    return {"codi": 200}
