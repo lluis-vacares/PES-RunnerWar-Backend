@@ -11,7 +11,7 @@ col = db["Actividad"]
 
 def create(name, date):
     aux = 0
-    for x in col.find({"accountname": name}, {"date": date}):
+    for x in col.find({"accountname": name, "date": date}):
         aux = x
     if aux == 0:
         doc = {
