@@ -8,15 +8,17 @@ db = client["RunnerWar"]
 col = db["Zona_Confrontacion"]
 
 
-def create_zona_confrontacion(nombre, latitud, longitud, puntuacion, descripcion):
+def create_zona_confrontacion(nombre, punto1, punto2, punto3, punto4, puntuacion, descripcion):
     aux = 0
     for x in col.find({"_id": nombre}):
         aux = x
     if aux == 0:
         doc = {
             "_id": nombre,
-            "latitud": latitud,
-            "longitud": longitud,
+            "punto1": punto1,
+            "punto2": punto2,
+            "punto3": punto3,
+            "punto4": punto4,
             "puntuacion": puntuacion,
             "descripcion": descripcion,
             "dominant_team": None,
@@ -34,8 +36,10 @@ def create_zona_confrontacion(nombre, latitud, longitud, puntuacion, descripcion
     else:
         return {
             "_id": None,
-            "latitud": None,
-            "longitud": None,
+            "punto1": None,
+            "punto2": None,
+            "punto3": None,
+            "punto4": None,
             "puntuacion": None,
             "descripcion": None,
             "dominant_team": None,
@@ -64,8 +68,10 @@ def consult_zona_confrontacion(nombre):
     else:
         return {
             "_id": None,
-            "latitud": None,
-            "longitud": None,
+            "punto1": None,
+            "punto2": None,
+            "punto3": None,
+            "punto4": None,
             "puntuacion": None,
             "descripcion": None,
             "dominant_team": None,
@@ -74,4 +80,5 @@ def consult_zona_confrontacion(nombre):
             "yellow_occupation": None,
             "green_occupation": None,
             "codi": 500}
+
 
