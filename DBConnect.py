@@ -128,11 +128,13 @@ def get_all_lugar_interes():
 @app.route('/create/zona_confrontacion', methods=['POST'])
 def create_zona_confrontacion():
     nombre = request.json["nombre"]
-    latitud = request.json["latitud"]
-    longitud = request.json["longitud"]
+    punto1 = request.json["punto1"]
+    punto2 = request.json["punto2"]
+    punto3 = request.json["punto3"]
+    punto4 = request.json["punto4"]
     puntuacion = request.json["puntuacion"]
     descripcion = request.json["descripcion"]
-    return Zona_Confrontacion.create_zona_confrontacion(nombre,latitud, longitud, puntuacion, descripcion)
+    return Zona_Confrontacion.create_zona_confrontacion(nombre, punto1, punto2, punto3, punto4, puntuacion, descripcion)
 
 
 @app.route('/delete/zona_confrontacion', methods=['POST'])
