@@ -44,7 +44,7 @@ def consult_accountname(attribute):
     aux = 0
     for x in col.find({"accountname": attribute}):
         aux = x
-    if aux != 0:
+    if aux >= 0:
         z = aux
         y = {"codi": 200}
         z.update(y)
@@ -56,6 +56,7 @@ def consult_accountname(attribute):
 
 def create(email, name, password, faction, last_connection):
     aux = col.count_documents({"accountname": name})
+    aux += col.count_documents({"_id": email})
     if aux == 0:
         doc = {
             "_id": email,
