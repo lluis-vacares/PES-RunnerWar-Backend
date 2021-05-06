@@ -157,29 +157,29 @@ def get_all_zona_confrontacion():
 # Connexion Amigo
 @app.route('/add_friend', methods=['POST'])
 def add_friend():
-    accountname1 = request.json["accountname1"]
-    accountname2 = request.json["accountname2"]
-    return Amigo.aggregate(accountname1, accountname2)
+    email1 = request.json["email1"]
+    email2 = request.json["email2"]
+    return Amigo.aggregate(email1, email2)
 
 
 @app.route('/search_friend', methods=['POST'])
 def search_friendship():
-    accountname1 = request.json['accountname1']
-    accountname2 = request.json['accountname2']
-    return Amigo.search(accountname1, accountname2)
+    email1 = request.json['email1']
+    email2 = request.json['email2']
+    return Amigo.search(email1, email2)
 
 
 @app.route('/delete_friend', methods=['POST'])
 def delete_friend():
-    accountname1 = request.json["accountname1"]
-    accountname2 = request.json["accountname2"]
-    return Amigo.delete(accountname1, accountname2)
+    email1 = request.json["email1"]
+    email2 = request.json["email2"]
+    return Amigo.delete(email1, email2)
 
 
-@app.route('/friends', methods=['GET'])
+@app.route('/friends', methods=['POST'])
 def get_friends():
-    accountname = request.args('accountname')
-    return Amigo.get_friends(accountname)
+    email = request.json["email"]
+    return Amigo.get_friends(email)
 
 
 @app.route('/chat/create', methods=['POST'])

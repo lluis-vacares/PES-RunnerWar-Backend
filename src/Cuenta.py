@@ -109,12 +109,15 @@ def update(item, new, id):
     if aux == 0:
         new = {"$set": {item: new}}
         col.update_one({"_id": id}, new)
+
     return consult_email(id)
 
 
 def delete(attribute):
     query = {"_id": attribute}
     col.delete_one(query)
+    db.Amigo.delete_many({"Amigo1": attribute})
+    db.Amigo.delete_many({"Amigo2": attribute})
     return {"codi": 200}
 
 

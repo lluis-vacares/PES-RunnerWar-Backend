@@ -9,47 +9,47 @@ db = client["RunnerWar"]
 col = db["Amigo"]
 
 
-def search(accountname1, accountname2):
-    aux = col.count_documents({"Amigo1": accountname1, "Amigo2": accountname2})
-    aux += col.count_documents({"Amigo1": accountname2, "Amigo2": accountname1})
+def search(email1, email2):
+    aux = col.count_documents({"Amigo1": email1, "Amigo2": email2})
+    aux += col.count_documents({"Amigo1": email2, "Amigo2": email1})
     if aux > 0:
         return {"codi": 200}
     else:
         return {"codi": 500}
 
 
-def aggregate(accountname1, accountname2):
+def aggregate(email1, email2):
     doc = {
-        "Amigo1": accountname1,
-        "Amigo2": accountname2,
+        "Amigo1": email1,
+        "Amigo2": email2,
     }
     col.insert_one(doc)
     return {"codi": 200}
 
 
-def delete(accountname1, accountname2):
-    col.find_one_and_delete({"Amigo1": accountname1, "Amigo2": accountname2})
-    col.find_one_and_delete({"Amigo1": accountname2, "Amigo2": accountname1})
+def delete(email1, email2):
+    col.find_one_and_delete({"Amigo1": email1, "Amigo2": email2})
+    col.find_one_and_delete({"Amigo1": email2, "Amigo2": email1})
     return {"codi": 200}
 
 
-def get_friends(accountname):
+def get_friends(email):
     #get the number of friends
-    numfriends = col.count_documents({"Amigo1": accountname})
-    numfriends += col.count_documents({"Amigo2": accountname})
+    numfriends = col.count_documents({"Amigo1": email})
+    numfriends += col.count_documents({"Amigo2": email})
 
     #get every friend
-    accountnames = []
-    for person in col.find({"Amigo1": accountname}):
-        accountnames.append(person['Amigo2'])
-    for person in col.find({"Amigo2": accountname}):
-        accountnames.append(person['Amigo1'])
+    accountemail = []
+    for person in col.find({"Amigo1": email}):
+        accountemail.append(person['Amigo2'])
+    for person in col.find({"Amigo2": email}):
+        accountemail.append(person['Amigo1'])
 
     #get account information
     friends = []
     friends.append({"numfriends": numfriends})
-    for name in accountnames:
-        for x in db.Cuenta.find({"accountname": name}, {"_id": 0, "password": 0}):
+    for mail in accountemail:
+        for x in db.Cuenta.find({"_id": mail}, {"password": 0}):
             friends.append(x)
 
     return json.dumps(friends)
