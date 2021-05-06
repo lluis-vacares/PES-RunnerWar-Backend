@@ -82,3 +82,10 @@ def consult_zona_confrontacion(nombre):
             "codi": 500}
 
 
+def get_all_zona_confrontacion():
+    a = []
+    for x in col.find():
+        a.append(x)
+    js = json.dumps(a)
+    return js
+

@@ -149,6 +149,11 @@ def consult_zona_confrontacion():
     return Zona_Confrontacion.consult_zona_confrontacion(nombre)
 
 
+@app.route('/zona_confrontacion', methods=['GET'])
+def get_all_zona_confrontacion():
+    return Zona_Confrontacion.get_all_zona_confrontacion()
+
+
 # Connexion Amigo
 @app.route('/add_friend', methods=['POST'])
 def add_friend():
