@@ -145,7 +145,7 @@ def delete_zona_confrontacion():
 
 @app.route('/consult/zona_confrontacion', methods=['GET'])
 def consult_zona_confrontacion():
-    nombre = request.args('nombre')
+    nombre = request.args['nombre']
     return Zona_Confrontacion.consult_zona_confrontacion(nombre)
 
 
