@@ -16,8 +16,9 @@ def create_account():
     accountname = request.json["accountname"]
     password = request.json["password"]
     faction = request.json["faction"]
-    last_connection = request.json["last_connection"]
-    return Cuenta.create(email, accountname, password, faction, last_connection)
+    last_connection = datetime.datetime.now().strftime("%x")
+
+    return Cuenta.create(email, accountname, password, faction, str(last_connection))
 
 
 @app.route('/update_accountname', methods=['PUT'])
@@ -77,7 +78,7 @@ def update_last_connection():
     email = request.json["email"]
     last_connection = datetime.datetime.now()
     last_connection = last_connection.strftime("%x")
-    return Cuenta.update_last_connection(email, last_connection)
+    return Cuenta.update_last_connection(email, str(last_connection))
 
 
 @app.route('/daily_login', methods=['POST'])
