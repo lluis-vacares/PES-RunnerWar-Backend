@@ -175,7 +175,7 @@ def daily_login(email):
         aux = x
     if aux != 0:
         if aux["last_connection"] != datetime.datetime.now():
-            update_last_connection(email, datetime.datetime.now())
+            update_last_connection(email, datetime.datetime.now().strftime("%d/%m/%Y"))
             add_points(email, 100)
             return {"codi": 200}
         else:

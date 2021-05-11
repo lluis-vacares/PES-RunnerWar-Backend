@@ -77,8 +77,8 @@ def add_points():
 def update_last_connection():
     email = request.json["email"]
     last_connection = datetime.datetime.now()
-    last_connection = last_connection.strftime("%x")
-    return Cuenta.update_last_connection(email, str(last_connection))
+    x = last_connection.strftime("%d/%m/%Y")
+    return Cuenta.update_last_connection(email, x)
 
 
 @app.route('/daily_login', methods=['POST'])
