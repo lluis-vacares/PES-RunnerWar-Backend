@@ -80,7 +80,7 @@ def update_last_connection():
     return Cuenta.update_last_connection(email, last_connection)
 
 
-@app.route('daily_login', methods=['POST'])
+@app.route('/daily_login', methods=['POST'])
 def daily_login():
     email = request.json["email"]
     return Cuenta.daily_login(email)
