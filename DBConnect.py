@@ -5,6 +5,8 @@ from src import Lugar_interes
 from src import Zona_Confrontacion
 from src import Chat
 
+import datetime
+
 app = Flask(__name__)
 
 
@@ -73,8 +75,15 @@ def add_points():
 @app.route('/cuenta/last_connection/update', methods=['PUT'])
 def update_last_connection():
     email = request.json["email"]
-    last_connection = request.json["last_connection"]
+    last_connection = datetime.datetime.now()
+    last_connection = last_connection.strftime("%x")
     return Cuenta.update_last_connection(email, last_connection)
+
+
+@app.route('daily_login', methods=['POST'])
+def daily_login():
+    email = request.json["email"]
+    return Cuenta.daily_login(email)
 
 
 @app.route('/create/activity', methods=['POST'])

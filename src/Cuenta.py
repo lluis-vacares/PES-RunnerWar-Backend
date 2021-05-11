@@ -1,3 +1,4 @@
+import datetime
 import pymongo
 import json
 
@@ -166,3 +167,17 @@ def update_last_connection(email, last_connection):
         newvalues = {"$set": {"last_connection": last_connection}}
         col.update_one(myquery, newvalues)
     return {"codi": 200}
+
+
+def daily_login(email):
+    aux = 0
+    for x in col.find({"_id": email}):
+        aux = x
+    if aux != 0:
+        if aux.__getattribute__("last_connection") == datetime.datetime.now():
+            update_last_connection(email, datetime.datetime.now())
+            return {"codi": 200}
+        else:
+            return {"codi": 500}
+    else:
+        return {"codi": 500}
