@@ -105,14 +105,21 @@ def login(email, password):
 
 def update(item, new, id):
     aux = 0
-    for x in col.find({"accountname": new}, {"_id": 0, "accountname": 1}):
+    for x in col.find({"accountname": new}):
         aux = x
     if aux == 0:
         new = {"$set": {item: new}}
         col.update_one({"_id": id}, new)
-
-    return consult_email(id)
-
+        return consult_email(id)
+    else:
+        return {"_id": None,
+                "password": None,
+                "accountname": None,
+                "coins": None,
+                "points": None,
+                "faction": None,
+                "last_connection": None,
+                "codi": 500}
 
 def delete(attribute):
     query = {"_id": attribute}
