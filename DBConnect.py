@@ -55,7 +55,7 @@ def consult_accountname():
 
 @app.route('/consult/other/account', methods=['POST'])
 def consult_other_account():
-    accountname = request.args('accountname')
+    accountname = request.json["accountname"]
     return Cuenta.consult_other_account(accountname)
 
 
