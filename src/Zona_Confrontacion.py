@@ -129,22 +129,22 @@ def update_winner(zc_name):
 
     if red > blue and red > green and red > yellow:
         myquery = {"_id": zc_name}
-        newvalues = {"$inc": {"dominant_team": red}}
+        newvalues = {"$set": {"dominant_team": red}}
         col.update_one(myquery, newvalues)
     elif blue > red and blue > green and blue > yellow:
         myquery = {"_id": zc_name}
-        newvalues = {"$inc": {"dominant_team": blue}}
+        newvalues = {"$set": {"dominant_team": blue}}
         col.update_one(myquery, newvalues)
     elif green > red and green > blue and green > yellow:
         myquery = {"_id": zc_name}
-        newvalues = {"$inc": {"dominant_team": green}}
+        newvalues = {"$set": {"dominant_team": green}}
         col.update_one(myquery, newvalues)
     elif yellow > red and yellow > green and yellow > blue:
         myquery = {"_id": zc_name}
-        newvalues = {"$inc": {"dominant_team": yellow}}
+        newvalues = {"$set": {"dominant_team": yellow}}
         col.update_one(myquery, newvalues)
     else:
         myquery = {"_id": zc_name}
-        newvalues = {"$inc": {"dominant_team": None}}
+        newvalues = {"$set": {"dominant_team": None}}
         col.update_one(myquery, newvalues)
     return {"codi": 200}
