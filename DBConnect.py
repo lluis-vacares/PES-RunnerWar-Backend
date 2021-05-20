@@ -164,6 +164,14 @@ def get_all_zona_confrontacion():
     return Zona_Confrontacion.get_all_zona_confrontacion()
 
 
+@app.route('/donate', methods=['PUT'])
+def donate_points():
+    email = request.json["email"]
+    points = request.json["points"]
+    zc_name = request.json["zc_name"]
+    return Zona_Confrontacion.donate_points(email, points, zc_name)
+
+
 # Connexion Amigo
 @app.route('/add_friend', methods=['POST'])
 def add_friend():

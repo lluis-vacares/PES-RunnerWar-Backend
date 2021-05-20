@@ -181,9 +181,7 @@ def daily_login(email):
     for x in col.find({"_id": email}):
         aux = x
     if aux != 0:
-
         today = datetime.datetime.now().strftime("%d/%m/%Y")
-
         if aux["last_connection"] != today:
             update_last_connection(email, today)
             add_points(email, 20)
