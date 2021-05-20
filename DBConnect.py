@@ -172,6 +172,10 @@ def donate_points():
     return Zona_Confrontacion.donate_points(email, points, zc_name)
 
 
+@app.route('/leaderboard/factions', methods=['GET'])
+def faction_leaderboard():
+    return Zona_Confrontacion.get_all_faction_points()
+
 # Connexion Amigo
 @app.route('/add_friend', methods=['POST'])
 def add_friend():

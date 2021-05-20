@@ -148,3 +148,20 @@ def update_winner(zc_name):
         newvalues = {"$set": {"dominant_team": None}}
         col.update_one(myquery, newvalues)
     return {"codi": 200}
+
+
+def get_all_faction_points():
+    red = 0
+    blue = 0
+    green = 0
+    yellow = 0
+    for x in us_col.find({"faction": "red"}):
+        red += x["points"]
+    for x in us_col.find({"faction": "blue"}):
+        blue += x["points"]
+    for x in us_col.find({"faction": "green"}):
+        green += x["points"]
+    for x in us_col.find({"faction": "yellow"}):
+        yellow += x["points"]
+
+    return {"red": red, "blue": blue, "green": green, "yellow": yellow}
