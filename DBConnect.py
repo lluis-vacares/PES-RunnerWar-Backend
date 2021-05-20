@@ -73,6 +73,11 @@ def add_points():
     return Cuenta.add_points(email, points)
 
 
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    return Cuenta.get_all_users()
+
+
 @app.route('/cuenta/last_connection/update', methods=['PUT'])
 def update_last_connection():
     email = request.json["email"]

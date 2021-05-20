@@ -190,3 +190,11 @@ def daily_login(email):
             return {"codi": 500}
     else:
         return {"codi": 500}
+
+
+def get_all_users():
+    a = []
+    for x in col.find({}, {"password": 0}):
+        a.append(x)
+    js = json.dumps(a)
+    return js
