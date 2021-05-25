@@ -8,6 +8,7 @@ db = client["RunnerWar"]
 col = db["Zona_Confrontacion"]
 us_col = db["Cuenta"]
 
+
 def create_zona_confrontacion(nombre, punto1, punto2, punto3, punto4, puntuacion, descripcion):
     aux = 0
     for x in col.find({"_id": nombre}):
