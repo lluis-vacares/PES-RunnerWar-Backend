@@ -194,7 +194,7 @@ def daily_login(email):
 
 def get_all_users():
     a = []
-    for x in col.find({}, {"password": 0}).sort("points", 1):
+    for x in col.find({}, {"password": 0}).sort("points", -1):
         a.append(x)
     js = json.dumps(a)
     return js
