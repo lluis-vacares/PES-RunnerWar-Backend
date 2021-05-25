@@ -72,6 +72,12 @@ def add_points():
     points = request.json["points"]
     return Cuenta.add_points(email, points)
 
+@app.route('/coins/add', methods=['PUT'])
+def add_coins():
+    email = request.json["email"]
+    coins = request.json["coins"]
+    return Cuenta.add_coins(email, coins)
+
 
 @app.route('/users', methods=['GET'])
 def get_all_users():
@@ -180,6 +186,7 @@ def donate_points():
 @app.route('/leaderboard/factions', methods=['GET'])
 def faction_leaderboard():
     return Zona_Confrontacion.get_all_faction_points()
+
 
 # Connexion Amigo
 @app.route('/add_friend', methods=['POST'])

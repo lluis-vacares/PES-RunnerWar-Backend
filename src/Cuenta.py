@@ -198,3 +198,24 @@ def get_all_users():
         a.append(x)
     js = json.dumps(a)
     return js
+
+
+def add_coins(email, coins):
+    aux = 0
+    for x in col.find({"_id": email}):
+        aux = x
+    if aux == 0:
+        return {
+            "_id": None,
+            "password": None,
+            "accountname": None,
+            "points": None,
+            "faction": None,
+            "last_connection": None,
+            "codi": 500
+        }
+    else:
+        myquery = {"_id": email}
+        newvalues = {"$inc": {"coins": coins}}
+        col.update_one(myquery, newvalues)
+        return consult_email(email)
