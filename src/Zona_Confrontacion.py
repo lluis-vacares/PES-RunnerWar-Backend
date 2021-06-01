@@ -167,109 +167,95 @@ def get_all_faction_points():
         yellow += x["points"]
     a = {}
     if red >= blue and red >= green and red >= yellow:
-        a.update({"red": red, "position": 1})
         if blue >= green and blue >= yellow:
-            a.update({"blue": blue, "position": 2})
             if green >= yellow:
-                a.update({"green": green, "position": 3})
-                a.update({"yellow": yellow, "position": 4})
+                a = {{"red": red, "position": 1}, {"blue": blue, "position": 2}, {"green": green, "position": 3},
+                     {"yellow": yellow, "position": 4}}
             else:
-                a.update({"green": green, "position": 4})
-                a.update({"yellow": yellow, "position": 3})
+                a = {{"red": red, "position": 1}, {"blue": blue, "position": 2}, {"green": green, "position": 4},
+                     {"yellow": yellow, "position": 3}}
         elif green >= blue and green >= yellow:
-            a.update({"green": green, "position": 2})
             if blue >= yellow:
-                a.update({"blue": blue, "position": 3})
-                a.update({"yellow": yellow, "position": 4})
+                a = {{"red": red, "position": 1}, {"blue": blue, "position": 3}, {"green": green, "position": 2},
+                     {"yellow": yellow, "position": 4}}
             else:
-                a.update({"blue": blue, "position": 4})
-                a.update({"yellow": yellow, "position": 3})
+                a = {{"red": red, "position": 1}, {"blue": blue, "position": 4}, {"green": green, "position": 2},
+                     {"yellow": yellow, "position": 3}}
         elif yellow >= blue and yellow >= green:
-            a.update({"yellow": yellow, "position": 2})
             if blue >= green:
-                a.update({"blue": blue, "position": 3})
-                a.update({"green": green, "position": 4})
+                a = {{"red": red, "position": 1}, {"blue": blue, "position": 3}, {"green": green, "position": 4},
+                     {"yellow": yellow, "position": 2}}
             else:
-                a.update({"blue": blue, "position": 4})
-                a.update({"green": green, "position": 3})
+                a = {{"red": red, "position": 1}, {"blue": blue, "position": 4}, {"green": green, "position": 3},
+                     {"yellow": yellow, "position": 2}}
     elif blue >= red and blue >= green and blue >= yellow:
-        a.update({"blue": blue, "position": 1})
         if red >= green and red >= yellow:
-            a.update({"red": red, "position": 2})
             if green >= yellow:
-                a.update({"green": green, "position": 3})
-                a.update({"yellow": yellow, "position": 4})
+                a = {{"red": red, "position": 2}, {"blue": blue, "position": 1}, {"green": green, "position": 3},
+                     {"yellow": yellow, "position": 4}}
             else:
-                a.update({"green": green, "position": 4})
-                a.update({"yellow": yellow, "position": 3})
+                a = {{"red": red, "position": 2}, {"blue": blue, "position": 1}, {"green": green, "position": 4},
+                     {"yellow": yellow, "position": 3}}
         elif green >= red and green >= yellow:
-            a.update({"green": green, "position": 2})
             if red >= yellow:
-                a.update({"red": red, "position": 3})
-                a.update({"yellow": yellow, "position": 4})
+                a = {{"red": red, "position": 3}, {"blue": blue, "position": 1}, {"green": green, "position": 2},
+                     {"yellow": yellow, "position": 4}}
             else:
-                a.update({"red": red, "position": 4})
-                a.update({"yellow": yellow, "position": 3})
+                a = {{"red": red, "position": 4}, {"blue": blue, "position": 1}, {"green": green, "position": 2},
+                     {"yellow": yellow, "position": 3}}
         elif yellow >= red and yellow >= green:
-            a.update({"yellow": yellow, "position": 2})
             if red >= green:
-                a.update({"red": red, "position": 3})
-                a.update({"green": green, "position": 4})
+                a = {{"red": red, "position": 3}, {"blue": blue, "position": 1}, {"green": green, "position": 4},
+                     {"yellow": yellow, "position": 2}}
             else:
-                a.update({"red": red, "position": 4})
-                a.update({"green": green, "position": 3})
+                a = {{"red": red, "position": 4}, {"blue": blue, "position": 1}, {"green": green, "position": 3},
+                     {"yellow": yellow, "position": 2}}
     elif green >= blue and green >= red and green >= yellow:
-        a.update({"green": green, "position": 1})
         if blue >= red and blue >= yellow:
-            a.update({"blue": blue, "position": 2})
-            if green >= yellow:
-                a.update({"red": red, "position": 3})
-                a.update({"yellow": yellow, "position": 4})
+            if red >= yellow:
+                a = {{"red": red, "position": 3}, {"blue": blue, "position": 2}, {"green": green, "position": 1},
+                     {"yellow": yellow, "position": 4}}
             else:
-                a.update({"red": red, "position": 4})
-                a.update({"yellow": yellow, "position": 3})
+                a = {{"red": red, "position": 4}, {"blue": blue, "position": 2}, {"green": green, "position": 1},
+                     {"yellow": yellow, "position": 3}}
         elif red >= blue and red >= yellow:
             a += {"red": red, "position": 2}
             if blue >= yellow:
-                a.update({"blue": blue, "position": 3})
-                a.update({"yellow": yellow, "position": 4})
+                a = {{"red": red, "position": 2}, {"blue": blue, "position": 3}, {"green": green, "position": 1},
+                     {"yellow": yellow, "position": 4}}
             else:
-                a.update({"blue": blue, "position": 4})
-                a.update({"yellow": yellow, "position": 3})
+                a = {{"red": red, "position": 2}, {"blue": blue, "position": 4}, {"green": green, "position": 1},
+                     {"yellow": yellow, "position": 3}}
         elif yellow >= blue and yellow >= red:
-            a.update({"yellow": yellow, "position": 2})
             if blue >= red:
-                a.update({"blue": blue, "position": 3})
-                a.update({"red": red, "position": 4})
+                a = {{"red": red, "position": 4}, {"blue": blue, "position": 3}, {"green": green, "position": 1},
+                     {"yellow": yellow, "position": 2}}
             else:
-                a.update({"blue": blue, "position": 4})
-                a.update({"red": red, "position": 3})
+                a = {{"red": red, "position": 3}, {"blue": blue, "position": 4}, {"green": green, "position": 1},
+                     {"yellow": yellow, "position": 2}}
     elif yellow >= blue and yellow >= green and yellow >= red:
-        a.update({"yellow": yellow, "position": 1})
         if blue >= green and blue >= red:
-            a.update({"blue": blue, "position": 2})
             if green >= red:
-                a.update({"green": green, "position": 3})
-                a.update({"red": red, "position": 4})
+                a = {{"red": red, "position": 4}, {"blue": blue, "position": 2}, {"green": green, "position": 3},
+                     {"yellow": yellow, "position": 1}}
             else:
-                a.update({"green": green, "position": 4})
-                a.update({"red": red, "position": 3})
+                a = {{"red": red, "position": 3}, {"blue": blue, "position": 2}, {"green": green, "position": 4},
+                     {"yellow": yellow, "position": 1}}
         elif green >= blue and green >= red:
-            a.update({"green": green, "position": 2})
             if blue >= red:
-                a.update({"blue": blue, "position": 3})
-                a.update({"red": red, "position": 4})
+                a = {{"red": red, "position": 4}, {"blue": blue, "position": 3}, {"green": green, "position": 2},
+                     {"yellow": yellow, "position": 1}}
             else:
-                a.update({"blue": blue, "position": 4})
-                a.update({"red": red, "position": 3})
+                a = {{"red": red, "position": 3}, {"blue": blue, "position": 4}, {"green": green, "position": 2},
+                     {"yellow": yellow, "position": 1}}
         elif red >= blue and red >= green:
             a.update({"red": red, "position": 2})
             if blue >= green:
-                a.update({"blue": blue, "position": 3})
-                a.update({"green": green, "position": 4})
+                a = {{"red": red, "position": 2}, {"blue": blue, "position": 3}, {"green": green, "position": 4},
+                     {"yellow": yellow, "position": 1}}
             else:
-                a.update({"blue": blue, "position": 4})
-                a.update({"green": green, "position": 3})
+                a = {{"red": red, "position": 2}, {"blue": blue, "position": 4}, {"green": green, "position": 3},
+                    {"yellow": yellow, "position": 1}}
     json_dump = json.dumps(a)
     aux = json.loads(json_dump)
     return aux
