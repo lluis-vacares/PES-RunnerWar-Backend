@@ -165,4 +165,4 @@ def get_all_faction_points():
         green += x["points"]
     for x in us_col.find({"faction": "yellow"}):
         yellow += x["points"]
-    return {"red": red, "blue": blue, "yellow": yellow}
+    return {"red": red, "blue": blue, "yellow": yellow, "green": green}
