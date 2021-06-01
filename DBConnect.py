@@ -72,6 +72,7 @@ def add_points():
     points = request.json["points"]
     return Cuenta.add_points(email, points)
 
+
 @app.route('/coins/add', methods=['PUT'])
 def add_coins():
     email = request.json["email"]

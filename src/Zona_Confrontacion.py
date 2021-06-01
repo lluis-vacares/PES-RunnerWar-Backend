@@ -80,7 +80,8 @@ def consult_zona_confrontacion(nombre):
             "blue_occupation": None,
             "yellow_occupation": None,
             "green_occupation": None,
-            "codi": 500}
+            "codi": 500
+        }
 
 
 def get_all_zona_confrontacion():
@@ -164,5 +165,112 @@ def get_all_faction_points():
         green += x["points"]
     for x in us_col.find({"faction": "yellow"}):
         yellow += x["points"]
-
-    return {"red": red, "blue": blue, "green": green, "yellow": yellow}
+    #mirar la manera de crear un json manual con python + comparacion
+    a = 0
+    if red >= blue and red >= green and red >= yellow:
+        a = {"red": red, "position": 1}
+        if blue >= green and blue >= yellow:
+            a += {"blue": blue, "position": 2}
+            if green >= yellow:
+                a += {"green": green, "position": 3}
+                a += {"yellow": yellow, "position": 4}
+            else:
+                a += {"green": green, "position": 4}
+                a += {"yellow": yellow, "position": 3}
+        elif green >= blue and green >= yellow:
+            a += {"green": green, "position": 2}
+            if blue >= yellow:
+                a += {"blue": blue, "position": 3}
+                a += {"yellow": yellow, "position": 4}
+            else:
+                a += {"blue": blue, "position": 4}
+                a += {"yellow": yellow, "position": 3}
+        elif yellow >= blue and yellow >= green:
+            a += {"yellow": yellow, "position": 2}
+            if blue >= green:
+                a += {"blue": blue, "position": 3}
+                a += {"green": green, "position": 4}
+            else:
+                a += {"blue": blue, "position": 4}
+                a += {"green": green, "position": 3}
+    elif blue >= red and blue >= green and blue >= yellow:
+        a = {"blue": blue, "position": 1}
+        if red >= green and red >= yellow:
+            a += {"red": red, "position": 2}
+            if green >= yellow:
+                a += {"green": green, "position": 3}
+                a += {"yellow": yellow, "position": 4}
+            else:
+                a += {"green": green, "position": 4}
+                a += {"yellow": yellow, "position": 3}
+        elif green >= red and green >= yellow:
+            a += {"green": green, "position": 2}
+            if red >= yellow:
+                a += {"red": red, "position": 3}
+                a += {"yellow": yellow, "position": 4}
+            else:
+                a += {"red": red, "position": 4}
+                a += {"yellow": yellow, "position": 3}
+        elif yellow >= red and yellow >= green:
+            a += {"yellow": yellow, "position": 2}
+            if red >= green:
+                a += {"red": red, "position": 3}
+                a += {"green": green, "position": 4}
+            else:
+                a += {"red": red, "position": 4}
+                a += {"green": green, "position": 3}
+    elif green >= blue and green >= red and green >= yellow:
+        a = {"green": green, "position": 1}
+        if blue >= red and blue >= yellow:
+            a += {"blue": blue, "position": 2}
+            if green >= yellow:
+                a += {"red": red, "position": 3}
+                a += {"yellow": yellow, "position": 4}
+            else:
+                a += {"red": red, "position": 4}
+                a += {"yellow": yellow, "position": 3}
+        elif red >= blue and red >= yellow:
+            a += {"red": red, "position": 2}
+            if blue >= yellow:
+                a += {"blue": blue, "position": 3}
+                a += {"yellow": yellow, "position": 4}
+            else:
+                a += {"blue": blue, "position": 4}
+                a += {"yellow": yellow, "position": 3}
+        elif yellow >= blue and yellow >= red:
+            a += {"yellow": yellow, "position": 2}
+            if blue >= red:
+                a += {"blue": blue, "position": 3}
+                a += {"red": red, "position": 4}
+            else:
+                a += {"blue": blue, "position": 4}
+                a += {"red": red, "position": 3}
+    elif yellow >= blue and yellow >= green and yellow >= red:
+        a = {"yellow": yellow, "position": 1}
+        if blue >= green and blue >= red:
+            a += {"blue": blue, "position": 2}
+            if green >= red:
+                a += {"green": green, "position": 3}
+                a += {"red": red, "position": 4}
+            else:
+                a += {"green": green, "position": 4}
+                a += {"red": red, "position": 3}
+        elif green >= blue and green >= red:
+            a += {"green": green, "position": 2}
+            if blue >= red:
+                a += {"blue": blue, "position": 3}
+                a += {"red": red, "position": 4}
+            else:
+                a += {"blue": blue, "position": 4}
+                a += {"red": red, "position": 3}
+        elif red >= blue and red >= green:
+            a += {"red": red, "position": 2}
+            if blue >= green:
+                a += {"blue": blue, "position": 3}
+                a += {"green": green, "position": 4}
+            else:
+                a += {"blue": blue, "position": 4}
+                a += {"green": green, "position": 3}
+    json_dump = json.dumps(a)
+    aux = json.loads(json_dump)
+    return aux
